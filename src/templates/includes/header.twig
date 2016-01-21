@@ -1,0 +1,23 @@
+<div class="u-contentWrapper">
+  <h1 class="HDRLogo" role="banner">
+    <a class="HDRLogo-link" href="/" rel="home">{{site.name}}</a>
+  </h1>
+  <nav id="nav-main" class="Menu Menu--main" role="navigation">
+    <ul class="Nav u-nl">
+    {% for item in menu.get_items %}
+      <li class="Nav-item {{item.classes | join(' ')}}">
+        <a class="Nav-link" href="{{item.get_link}}">{{item.title}}</a>
+        {% if item.get_children %}
+          <ul class="Nav-drop u-nl">
+          {% for child in item.get_children %}
+            <li class="Nav-drop-item">
+              <a class="Nav-link" href="{{child.get_link}}">{{child.title}}</a>
+            </li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav><!-- #nav -->
+</div>

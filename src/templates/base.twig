@@ -1,0 +1,43 @@
+
+	{% include 'html-header.twig' %}
+
+
+	<body class="{{body_class}}" data-template="base.twig">
+
+	{% include 'images/sprite.svg' %}
+	{% include 'browser-warning.twig' %}
+
+		<header class="header">
+			<div class="l-container">
+				{% block header %}
+					{% include 'header.twig' %}
+				{% endblock %}
+			</div>
+		</header>
+
+		<section  role="main">
+			{% if title %}<h1>{{title}}</h1>{% endif %}
+			<div class="typography">
+				{% block content %}
+					Sorry, no content
+				{% endblock %}
+			</div>
+			{% if sidebar %}
+				<aside class="sidebar">
+					{{sidebar}}
+				</aside>
+			{% endif %}
+		</section>
+
+		{% block footer %}
+			<footer class="footer">
+				<div class="l-container">
+					{% include 'footer.twig' %}
+				</div>
+			</footer>
+			{{ function('wp_footer') }}
+		{% endblock %}
+
+		{% include 'scripts.twig' %}
+	</body>
+</html>

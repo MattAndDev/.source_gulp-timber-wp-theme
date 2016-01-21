@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<article class="post-type-{{post.post_type}} Article" id="post-{{post.ID}}">
+		<section class="Article-content u-contentWrapper">
+			<h1 class="Article-title">{{post.title}}</h1>
+			<p class="blog-author">
+				<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.post_date|date}}
+			</p>
+			<div class="Article-body">
+				{{post.content}}
+			</div>
+		</section>
+		<section class="Comments u-contentWrapper">
+			<div class="Comments-respond">
+				<h3 class="h2">Comments</h3>
+				{{ comment_form }}
+			</div>
+			<div class="responses">
+				{% for cmt in post.get_comments() %}
+					{% include "comment.twig" with {comment:cmt} %}
+				{% endfor %}
+			</div>
+		</section>
+	</article>
+{% endblock %}
