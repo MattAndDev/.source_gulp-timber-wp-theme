@@ -19,7 +19,6 @@ class StarterSite extends TimberSite {
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 		parent::__construct();
 	}
 
@@ -33,33 +32,6 @@ class StarterSite extends TimberSite {
 		//self::register_taxonomy_tax() and function outside for better code;
 	}
 
-	function add_scripts() {
-		$google_maps_api = 'https://maps.googleapis.com/maps/api/js';
-		wp_enqueue_script('google-maps', $google_maps_api);
-		wp_enqueue_script( 'script', get_template_directory_uri().'/js/main.js' );
-		$wpo = array(
-			'theme' => get_template_directory_uri(),
-			'ajax' => array(
-				'url' => admin_url( 'admin-ajax.php' ),
-				'loader' => '<span class="ajax-loader">loading...</span>',
-				'action' => array(
-					'TYPE' => 'TYPE_load_more',
-				)
-			),
-			'map' => array(
-				'marker' => array(
-					'url' => get_template_directory_uri() . '/img/pin.png',
-					'size' => array('width@2x', 'height@2x'),
-					'origin' => array('0', '0'),
-					'anchor' => array('width/2', 'height'),
-					'scaled' => array('width', 'height')
-				),
-				'styles' => ''
-			)
-		);
-		//Wordpress object to pass custom values to the script
-		wp_localize_script('script', 'WPO', $wpo);
-	}
 
 	function add_to_context( $data ) {
 		$data['menu'] = new TimberMenu();
