@@ -75,7 +75,7 @@ class StarterSite extends TimberSite {
 
 }
 
-// new StarterSite();
+new StarterSite();
 
 /**
  * Load the Translations
