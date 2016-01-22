@@ -1,12 +1,15 @@
-<article class="teaser " id="teaser-{{post.ID}}">
+<article class="teaser teaser-{{post.post_type}}" id="teaser-{{post.ID}}">
 
 	<h2 class="teaser_title">
 		<a href="{{post.link}}">{{post.title}}</a>
 	</h2>
-	<p>{{post.get_preview}}</p>
+
+	<div class="teaser_typography">
+		<p>{{post.get_preview}}</p>
+	</div>
 
 	{% if post.get_thumbnail %}
-		<img src="{{post.thumbnail.src}}" />
+		<img class="teaser_img" src="{{post.thumbnail.src}}" />
 	{% endif %}
 
 </article>
