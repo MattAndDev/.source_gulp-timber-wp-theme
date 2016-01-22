@@ -3,12 +3,14 @@
 {% block content %}
   <div class="l-page">
     <div class="l-container">
+
       <article class="post-type-{{post.post_type}} page" id="post-{{post.ID}}">
         <h1 class="page_title">{{post.title}}</h1>
         <div class="page_typography">
           {{post.content}}
         </div>
       </article>
+
     </div>
   </div>
 {% endblock %}

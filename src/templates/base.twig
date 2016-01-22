@@ -8,23 +8,32 @@
 	{% include 'browser-warning.twig' %}
 
 		{% block header %}
+
 			{% include 'header.twig' %}
+
 		{% endblock %}
 
 		<section role="main">
+
 			{% block content %}
 				Sorry, no content
 			{% endblock %}
+
 			{% if sidebar %}
 				{{sidebar}}
 			{% endif %}
+
 		</section>
 
 		{% block footer %}
+
 			{% include 'footer.twig' %}
+
 			{{ function('wp_footer') }}
+
 		{% endblock %}
 
 		{% include 'scripts.twig' %}
+
 	</body>
 </html>
