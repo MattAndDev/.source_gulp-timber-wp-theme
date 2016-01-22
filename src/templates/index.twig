@@ -4,7 +4,7 @@
 	<div class="l-container">
 		{% for post in posts %}
 			{% post.title %}
-			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+			{% include ['teaser-'~post.post_type~'.twig', 'teaser.twig'] %}
 		{% endfor %}
 	</div>
 {% endblock %}
