@@ -10,21 +10,32 @@
 //===========================================
 
 $i-map: (
-  i-facebook-width: 32px,
-  i-facebook-height: 32px,
+  i-icon-facebook-width: 32px,
+  i-icon-facebook-height: 32px,
 
-  i-twitter-width: 32px,
-  i-twitter-height: 32px
+  i-icon-twitter-width: 32px,
+  i-icon-twitter-height: 32px
 
 );
 
-.i-facebook {
+.i-icon-facebook {
   width: 32px;
   height: 32px;
 }
 
-.i-twitter {
+.i-icon-twitter {
   width: 32px;
   height: 32px;
 }
 
+
+// Hide the svg by default
+//===========================================
+body > svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}

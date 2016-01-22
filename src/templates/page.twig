@@ -1,14 +1,14 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="l-container">
-  <article class="post-type-{{post.post_type}} Page" id="post-{{post.ID}}">
-    <section class="Page-content u-contentWrapper">
-      <h1 class="Page-title">{{post.title}}</h1>
-      <div class="Page-body">
-        {{post.content}}
-      </div>
-    </section>
-  </article>
-</div>
+  <div class="l-page">
+    <div class="l-container">
+      <article class="post-type-{{post.post_type}} page" id="post-{{post.ID}}">
+        <h1 class="page_title">{{post.title}}</h1>
+        <div class="page_typography">
+          {{post.content}}
+        </div>
+      </article>
+    </div>
+  </div>
 {% endblock %}

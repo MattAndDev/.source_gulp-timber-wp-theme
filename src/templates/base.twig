@@ -7,34 +7,22 @@
 	{% include 'images/sprite.svg' %}
 	{% include 'browser-warning.twig' %}
 
-		<header class="header">
-			<div class="l-container">
-				{% block header %}
-					{% include 'header.twig' %}
-				{% endblock %}
-			</div>
-		</header>
+		{% block header %}
+			{% include 'header.twig' %}
+		{% endblock %}
 
-		<section  role="main">
+		<section role="main">
 			{% if title %}<h1>{{title}}</h1>{% endif %}
-			<div class="typography">
 				{% block content %}
 					Sorry, no content
 				{% endblock %}
-			</div>
 			{% if sidebar %}
-				<aside class="sidebar">
-					{{sidebar}}
-				</aside>
+				{{sidebar}}
 			{% endif %}
 		</section>
 
 		{% block footer %}
-			<footer class="footer">
-				<div class="l-container">
-					{% include 'footer.twig' %}
-				</div>
-			</footer>
+			{% include 'footer.twig' %}
 			{{ function('wp_footer') }}
 		{% endblock %}
 
