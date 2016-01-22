@@ -1,7 +1,17 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	{% for post in posts %}
-		{% include ["tease-"~post.post_type~".twig", "tease.twig"] %}
-	{% endfor %}
+	<div class="l-page">
+		<div class="l-container">
+
+			{% if title %}
+				<h1 class="page_title">{{title}}</h1>
+			{% endif %}
+
+			{% for post in posts %}
+				{% include ["teaser-"~post.post_type~".twig", "teaser.twig"] %}
+			{% endfor %}
+
+		</div>
+	</div>
 {% endblock %}

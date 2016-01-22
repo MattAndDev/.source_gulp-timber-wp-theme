@@ -12,10 +12,9 @@
 		{% endblock %}
 
 		<section role="main">
-			{% if title %}<h1>{{title}}</h1>{% endif %}
-				{% block content %}
-					Sorry, no content
-				{% endblock %}
+			{% block content %}
+				Sorry, no content
+			{% endblock %}
 			{% if sidebar %}
 				{{sidebar}}
 			{% endif %}
