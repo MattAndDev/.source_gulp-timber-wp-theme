@@ -11,6 +11,8 @@ function distName() {
 var folderName = distName();
 var dest = './../'+ folderName;
 var src = './src';
+var server = 'domain.dev';
+
 
 module.exports = {
 
@@ -53,11 +55,7 @@ module.exports = {
   // ==============================
 
   browserSync: {
-    port: 9000,
-    server: {
-      // Serve up our build folder
-      baseDir: dest
-    },
+    proxy: server,
     notify: false,
     open: false
   },
