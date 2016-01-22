@@ -2,7 +2,7 @@
 
 var gulp      = require('gulp');
 var config    = require('../config').production;
-var minifyCSS = require('gulp-minify-css');
+var minifyCSS = require('gulp-cssnano');
 var size      = require('gulp-filesize');
 
 gulp.task('minifyCss', ['sass'], function() {
