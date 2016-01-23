@@ -10,8 +10,8 @@ var gulpif    = require('gulp-if');
 
 
 // Clean
-gulp.task('sprite:clean', function(cb){
-  del([config.dest + '/images/sprite-*.svg'], {dot: true}, cb);
+gulp.task('sprite:clean', function(){
+  del([config.dest + '/images/sprite-*.svg'], {dot: true});
 });
 
 
