@@ -12,3 +12,12 @@ Includes the following tools, tasks, and workflows:
 - Error handling in the console and in Notification Center
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
 - Svg icon sprite generation using gulp-svg-sprite
+- sass libs and utilities built by [Arillo](http://www.arillo.net)
+- Separate code and template folders for wp
+
+Based on:
+- [gulp-starter](https://github.com/greypants/gulp-starter) for gulp config and structure
+- [gulp-plate](https://github.com/arillo/gulp-plate) for sass libs and structure
+- [timber-starter-theme](https://github.com/Upstatement/timber-starter-theme) for wp timber theme
+
+Thanks!
