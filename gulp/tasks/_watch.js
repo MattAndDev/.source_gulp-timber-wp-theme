@@ -18,7 +18,7 @@ gulp.task('watch', ['clean'], function() {
   });
 
   watch(config.eslint.srcJs, function(){
-    runSequence('eslint', 'jscs');
+    runSequence('eslint');
   });
 
 
