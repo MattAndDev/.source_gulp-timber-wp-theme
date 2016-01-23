@@ -11,7 +11,7 @@ function distName() {
 var folderName = distName();
 var dest = './../'+ folderName;
 var src = './src';
-var server = 'domain.dev';
+var server = 'domain.dev'
 
 
 module.exports = {
@@ -56,8 +56,12 @@ module.exports = {
 
   browserSync: {
     proxy: server,
-    notify: false,
-    open: false
+    files: [
+      dest + '/css/*',
+      dest + '/js/*',
+      dest + '*.php',
+      dest + '*.twig',
+    ]
   },
 
   code: {
