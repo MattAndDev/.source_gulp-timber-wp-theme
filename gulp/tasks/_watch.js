@@ -8,7 +8,7 @@ var gulp     = require('gulp');
 var config   = require('../config');
 var browserSync   = require('browser-sync');
 var watch = require('gulp-watch');
-
+var runSequence = require('run-sequence');
 
 gulp.task('watch', ['clean'], function() {
   runSequence('default', ['watchify','browserSync']);
