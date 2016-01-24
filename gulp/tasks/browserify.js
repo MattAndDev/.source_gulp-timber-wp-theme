@@ -9,6 +9,7 @@
    See browserify.bundleConfigs in gulp/config.js
 */
 
+var babel        = require('babelify');
 var browserify   = require('browserify');
 var browserSync  = require('browser-sync');
 var watchify     = require('watchify');
@@ -26,14 +27,14 @@ var browserifyTask = function(devMode) {
 
     if(devMode) {
       // Add watchify args and debug (sourcemaps) option
-      _.extend(bundleConfig, watchify.args, { debug: false });
+      _.extend(bundleConfig, watchify.args, { debug: true });
       // A watchify require/external bug that prevents proper recompiling,
       // so (for now) we'll ignore these options during development. Running
       // `gulp browserify` directly will properly require and externalize.
       bundleConfig = _.omit(bundleConfig, ['external', 'require']);
     }
 
-    var b = browserify(bundleConfig);
+    var b = browserify(bundleConfig).transform(babel ,{presets: ["es2015"]} );
 
     var bundle = function() {
       // Log when bundling starts
@@ -48,7 +49,7 @@ var browserifyTask = function(devMode) {
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         // Specify the output destination
-        .pipe(gulp.dest(bundleConfig.dest));
+        .pipe(gulp.dest(bundleConfig.dest))
     };
 
     if(devMode) {
