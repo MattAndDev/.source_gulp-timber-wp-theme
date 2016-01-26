@@ -4,7 +4,11 @@
 
 	<body class="{{body_class}}" data-template="base.twig">
 
-	{% include 'images/sprite.svg' %}
+		<!-- If using inline svgs -->
+		<div class="svgSprite">
+			{% include 'images/sprite.svg' %}
+		</div>
+
 	{% include 'browser-warning.twig' %}
 
 		{% block header %}
