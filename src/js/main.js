@@ -14,7 +14,6 @@ $(() => {
   // Init featurejs and set default touch/no-touc flag
   // =======================================================
 
-  featurejs();
   if (feature.touch) {
     $('html').addClass('touch');
   } else {
