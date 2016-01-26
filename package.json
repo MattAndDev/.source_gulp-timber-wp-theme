@@ -10,21 +10,18 @@
     "node": "^5.0.0"
   },
   "browser": {
-    "plugin": "./src/js/vendor/jquery-plugin.js"
+    "featurejs": "./src/js/libs/feature.js"
+  },
+  "browserify-shim": {
+    "plugin": {
+      "exports": "featurejs"
+    }
   },
   "browserify": {
     "transform": [
       "browserify-shim",
       "babelify"
     ]
-  },
-  "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
   },
   "engine": "^node 5.0.0",
   "devDependencies": {
