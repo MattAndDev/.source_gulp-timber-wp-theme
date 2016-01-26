@@ -17,7 +17,7 @@ $i-map: (
   {{/shapes}}
 );
 
-{{#shapes}}.i-{{name}} {
+{{#shapes}}.{{name}} {
   width: {{width.outer}}px;
   height: {{height.outer}}px;
 }
@@ -26,7 +26,7 @@ $i-map: (
 
 // Hide the svg by default
 //===========================================
-body > svg {
+.svgSprite {
   position: absolute;
   top: 0;
   left: 0;

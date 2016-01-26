@@ -177,7 +177,7 @@ module.exports = {
     optionsInline: {
       shape: {
         id: {
-          generator: 'icon-%s'
+          generator: 'i-%s'
         }
       },
       mode: {
