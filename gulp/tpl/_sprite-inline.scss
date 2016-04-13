@@ -11,8 +11,8 @@
 
 $i-map: (
   {{#shapes}}
-  i-{{name}}-width: {{width.outer}}px,
-  i-{{name}}-height: {{height.outer}}px{{^last}},{{/last}}
+  {{name}}-width: {{width.outer}}px,
+  {{name}}-height: {{height.outer}}px{{^last}},{{/last}}
 
   {{/shapes}}
 );
