@@ -1,5 +1,9 @@
 <?php
 
+// Init Timber
+$timber = new \Timber\Timber();
+
+// Check that everythign went right
 if ( ! class_exists( 'Timber' ) ) {
 	add_action( 'admin_notices', function() {
 			echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
@@ -19,6 +23,11 @@ class StarterSite extends TimberSite {
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
+
+		// Adding scripts and css
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
+
 		parent::__construct();
 	}
 
@@ -45,6 +54,50 @@ class StarterSite extends TimberSite {
 		return $twig;
 	}
 
+	// Add scripts
+	// ==================================================================
+	// Adding scripts with random version for development  -> cache buster
+	// ==================================================================
+	function add_scripts() {
+		if (getenv('WP_ENV') === 'development') {
+			function random_js() {
+				$randomizr = '?' . rand(100,999);
+				return $randomizr;
+			}
+		} else {
+			function random_js() {
+				return '1.0.0';
+			}
+		}
+		wp_enqueue_script( 'script', get_template_directory_uri().'/js/main.js', array(), random_js(), true );
+			$wpo = array(
+				'theme' => get_template_directory_uri(),
+				'ajax' => array(
+					'url' => admin_url( 'admin-ajax.php' )
+				),
+			);
+		wp_localize_script('script', 'WPO', $wpo);
+	}
+
+
+	// Add styles
+	// ==================================================================
+	// Adding styles with random version for development -> cache buster
+	function add_styles() {
+		if (getenv('WP_ENV') === 'development') {
+			function random_css() {
+				$randomizr = '?' . rand(100,999);
+				return $randomizr;
+			}
+		} else {
+			function random_css() {
+				return '1.0.0';
+			}
+		}
+		wp_enqueue_style ( 'main',  get_template_directory_uri().'/style.css', array(), random_css() );
+	}
+
+
 }
 
 new StarterSite();
@@ -56,88 +109,3 @@ function altana_setup(){
     load_theme_textdomain('text_domain', get_template_directory() . '/languages');
 }
 add_action('after_setup_theme', 'altana_setup');
-
-/**
- * Load more TYPE on AJAX call
- * @param int $offset
- * @param int $pad posts_per_page
- * @param string $filter if there's a filter
- */
-function TYPE_load_more() {
-
-	$offset = $_POST['offset'];
-	$pad = $_POST['pad'];
-	if (isset($_POST['filter'])) {
-		$filter = $_POST['filter'];
-	}
-
-	$post_type = 'post';
-	$taxonomy_name = 'filter';
-
-	if (isset($filter) && $filter !== '*') {
-
-		//Array for the filtered query
-		$args = array(
-			'post_type'=> $post_type,
-			'offset' => $offset,
-			'posts_per_page' => $pad,
-			$taxonomy_name => $filter
-		);
-
-	} else {
-
-		//Array for general query
-		$args = array(
-			'post_type'=> $post_type,
-			'offset' => $offset,
-			'posts_per_page' => $pad
-		);
-
-	}
-
-	//Retrieve the posts
-	$ajax_posts = Timber::get_posts($args);
-
-	//Render them in data
-	foreach ($ajax_posts as $key => $post) {
-
-		//Retrieve the terms
-		$terms = $post->terms;
-
-		//Create a var to create the classes
-	  $post_terms = '';
-
-	  foreach ($terms as $term) {
-
-			//Create a class for each term with a prefix
-	    $post_terms .= ' CLASS_PREFIX-'.$term->slug;
-
-	  }
-
-		//Pass the context
-	  $post->post_term = $post_terms;
-		$context['post'] = $post;
-
-		//Load the template and compile it
-		$post_template = Timber::compile( 'teaser-'. $post_type .'.twig', $context );
-
-		//Remove all the newlines to send clean JSON
-		$data[$key] = trim(preg_replace('/\s+/', ' ', $post_template));
-
-	}
-
-	if (isset($data)) {
-
-		//Encode the data (posts array) and send it
-		die(json_encode($data));
-
-	} else {
-
-		//Nothing found
-		die(false);
-
-	}
-
-}
-add_action( 'wp_ajax_TYPE', 'TYPE' );
-add_action( 'wp_ajax_nopriv_TYPE', 'TYPE' );
