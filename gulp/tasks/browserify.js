@@ -37,7 +37,7 @@ var browserifyTask = function(devMode) {
     }
 
 
-    var b = browserify(bundleConfig).transform(babel ,{presets: ["es2015"]} );
+    var b = browserify(bundleConfig).transform(babel ,{presets: ["es2015","react"],plugins: ["transform-class-properties"]} );
 
     var bundle = function() {
       // Log when bundling starts
